@@ -37,7 +37,6 @@ function ctools_plugin_example_menu() {
     'access arguments' => array('administer site configuration'),
     'type' => MENU_NORMAL_ITEM,
   );
-
   return $items;
 }
 

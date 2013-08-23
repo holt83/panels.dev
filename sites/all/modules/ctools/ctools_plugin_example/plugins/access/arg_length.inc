@@ -22,20 +22,21 @@ $plugin = array(
 /**
  * Settings form for the 'by role' access plugin.
  */
-function ctools_plugin_example_arg_length_ctools_access_settings(&$form, &$form_state, $conf) {
+function ctools_plugin_example_arg_length_ctools_access_settings($form, &$form_state, $conf) {
   $form['settings']['greater_than'] = array(
     '#type' => 'radios',
     '#title' => t('Grant access if simplecontext argument length is'),
     '#options' => array(1 => t('Greater than'), 0 => t('Less than or equal to')),
     '#default_value' => $conf['greater_than'],
   );
-  $form['settings']['arg_length'] = array(
+  $form['settings']['arg_length'] = array(  
     '#type' => 'textfield',
     '#title' => t('Length of simplecontext argument'),
     '#size' => 3,
     '#default_value' => $conf['arg_length'],
     '#description' => t('Access/visibility will be granted based on arg length.'),
   );
+  return $form;
 }
 
 /**
