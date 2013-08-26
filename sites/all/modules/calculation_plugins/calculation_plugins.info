@@ -3,4 +3,5 @@ description = Shows examples of ctools plugins
 core = 7.x
 package = Examples
 files[] = calculation_plugins.module
+files[] = calculation_plugins_operation.inc
 dependencies[] = ctools

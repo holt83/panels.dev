@@ -25,7 +25,7 @@ function calculation_plugins_ctools_plugin_type() {
  */
 function calculation_plugins_menu() {
   $items = array();
-  $items['operation_plugin'] = array(
+  $items['calculation-plugins'] = array(
     'title' => 'CTools calculation plugins example',
     'description' => t('CTools plugin example'),
     'page callback' => 'drupal_get_form',
@@ -62,13 +62,64 @@ function calculation_plugins_calculation_form($form, $form_state) {
     '#type' => 'textfield',
     '#title' => t('Number a'),  
   );
-  $form['number_a'] = array(
+  $form['number_b'] = array(
     '#type' => 'textfield',
-    '#title' => t('Number a'),  
+    '#title' => t('Number b'),  
   );
-  $form['number_a'] = array(
-    '#type' => 'textfield',
-    '#title' => t('Number a'),  
+  $form['submit'] = array(
+    '#type' => 'submit',
+    '#value' => t('Calculate'),  
   );
   return $form;
 } 
+
+/**
+ * Validatie handler
+ */
+function calculation_plugins_calculation_form_validate($form, &$form_state) {
+  $fv = $form_state['values'];
+  $operations = array_filter($fv['operations']);
+  $nr_a = $fv['number_a'];
+  $nr_b = $fv['number_b'];
+  foreach($operations as $operation) {
+    $instance = _calculation_plugins_get_instance($operation, $nr_a, $nr_b);
+    if ($instance) {
+      $instance->validate();
+    }
+  }
+}
+
+/**
+ * Submit handler
+ */
+function calculation_plugins_calculation_form_submit($form, &$form_state) {
+  $fv = $form_state['values'];
+  $operations = array_filter($fv['operations']);
+  $nr_a = $fv['number_a'];
+  $nr_b = $fv['number_b'];
+  foreach($operations as $operation) {
+    $instance = _calculation_plugins_get_instance($operation, $nr_a, $nr_b);
+    if ($instance) {
+      drupal_set_message($instance->resultMessage());
+    }
+  }
+}
+
+
+/**
+ * Retrieve object of main class of operation.
+ */
+function _calculation_plugins_get_instance($id, $nr_a = null, $nr_b = null) {
+  $instances = &drupal_static(__FUNCTION__);
+  if (!isset($instances[$id])) {
+    ctools_include('plugins');
+    $plugin = ctools_get_plugins('calculation_plugins', 'operation', $id);
+    $class = ctools_plugin_get_class($plugin, 'handler');
+    $instances[$id] = new $class($nr_a, $nr_b);
+    if (!is_subclass_of($instances[$id], 'calculation_plugins_operation')) {
+      $instances[$id] = NULL;
+    }
+  }
+  return $instances[$id];
+} 
+
