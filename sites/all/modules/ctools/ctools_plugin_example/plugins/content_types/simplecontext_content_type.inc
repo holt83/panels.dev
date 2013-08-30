@@ -76,6 +76,7 @@ function ctools_plugin_example_simplecontext_content_type_admin_info($subtype, $
 function simplecontext_content_type_render($subtype, $conf, $args, $context) {
   $data = $context->data;
   $block = new stdClass();
+
   // Don't forget to check this data if it's untrusted.
   // The title actually used in rendering.
   $block->title = "Simplecontext content type";

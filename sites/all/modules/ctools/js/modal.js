@@ -278,10 +278,7 @@
       Drupal.CTools.Modal.show(Drupal.CTools.Modal.getSettings(ajax.element));
     }
     $('#modal-title').html(response.title);
-    // Simulate an actual page load by scrolling to the top after adding the
-    // content. This is helpful for allowing users to see error messages at the
-    // top of a form, etc.
-    $('#modal-content').html(response.output).scrollTop(0);
+    $('#modal-content').html(response.output);
     Drupal.attachBehaviors();
   }
 
@@ -399,7 +396,7 @@
       }
 
       var parents = $(target).parents().get();
-      for (var i = 0; i < parents.length; ++i) {
+      for (var i in $(target).parents().get()) {
         var position = $(parents[i]).css('position');
         if (position == 'absolute' || position == 'fixed') {
           return true;
@@ -434,7 +431,7 @@
       }
     };
 
-    $(document).bind('keydown', modalEventEscapeCloseHandler);
+    $(document).bind('keypress', modalEventEscapeCloseHandler);
 
     // Close the open modal content and backdrop
     function close() {
