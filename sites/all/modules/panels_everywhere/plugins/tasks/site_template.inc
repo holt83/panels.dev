@@ -139,7 +139,6 @@ function _panels_everywhere_find_context($contexts, $type) {
   if ($list) {
     return clone(array_shift($list));
   }
-
   return ctools_context_create_empty($type);
 }
 
