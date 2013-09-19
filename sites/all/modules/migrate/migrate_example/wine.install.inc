@@ -679,7 +679,6 @@ function migrate_example_wine_content_types() {
     'modified' => 1,
     'locked' => 1,
   );
-
   foreach ($types as $type) {
     $type = node_type_set_defaults($type);
     node_type_save($type);
