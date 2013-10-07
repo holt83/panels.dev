@@ -5,11 +5,10 @@ sites/*/settings*.php
 sites/*/files
 sites/*/private
 
-# Ignore eclipse workspace settings and buildpath
-.buildpath
-.project
+# Ignore eclipse settings files and folders
 .settings
-nbproject
+.project
+.buildpath
 
 # Ignore nested git repositories
 sites/all/modules/embed_facebook
