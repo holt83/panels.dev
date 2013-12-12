@@ -5,3 +5,12 @@
  *
  * This module demonstrates how to build various types of ctools plugins.
  */
+
+/**
+ * Implements hook_ctools_plugin_directory().
+ */
+function plugin_test_ctools_plugin_directory($owner, $plugin_type) {
+	if ($owner == 'ctools') {
+		return "plugins/$plugin_type";
+	}
+}

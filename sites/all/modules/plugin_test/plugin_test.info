@@ -4,3 +4,7 @@ package = Examples
 core = 7.x
 
 files[] = plugin_test.module
+
+dependencies[] = ctools
+dependencies[] = panels
+dependencies[] = page_manager
