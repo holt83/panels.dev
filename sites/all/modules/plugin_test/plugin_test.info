@@ -1,0 +1,6 @@
+name = Ctools plugin test
+description = Test various types of ctools plugins.
+package = Examples
+core = 7.x
+
+files[] = plugin_test.module

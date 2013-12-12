@@ -1,7 +1,0 @@
-name = Ctools plugin test
-description = Test various types of ctools plugins.
-package = Drupal 7 development
-dependencies[] = ctools
-dependencies[] = panels
-dependencies[] = page_manager
-files[] = ctools_plugin_test.module
