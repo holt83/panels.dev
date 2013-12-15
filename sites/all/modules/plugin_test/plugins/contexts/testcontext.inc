@@ -44,8 +44,8 @@ function plugin_test_context_create_testcontext($empty, $data = NULL, $conf = FA
 
   $context->data = new stdClass();
   // Populate our keyword with data.
-  $context->data->keyword1 = t('Keyword1');
-  $context->data->keyword2 = t('Keyword2');
+  $context->data->keyword1 = t('Data for keyword 1');
+  $context->data->keyword2 = t('Data for keyword 2');
   
   if ($conf) {
   	// Data coming from settings form.
@@ -68,8 +68,8 @@ function plugin_test_context_create_testcontext($empty, $data = NULL, $conf = FA
  */
 function testcontext_convert_list() {
 	return array(
-		'keyword1' => t('Keyword1'),
-		'keyword2' => t('Keyword2'),
+		'keyword1' => t('Keyword 1'),
+		'keyword2' => t('Keyword 2'),
 	);
 }
 
