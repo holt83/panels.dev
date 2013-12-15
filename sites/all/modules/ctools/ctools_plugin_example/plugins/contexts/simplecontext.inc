@@ -50,7 +50,6 @@ function ctools_plugin_example_context_create_simplecontext($empty, $data = NULL
   if ($empty) {
     return $context;
   }
-
   if ($conf) {
     if (!empty($data)) {
       $context->data = new stdClass();

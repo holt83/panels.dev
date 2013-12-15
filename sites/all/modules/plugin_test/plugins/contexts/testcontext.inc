@@ -35,12 +35,54 @@ $plugin = array(
  *   TRUE if data is coming from admin form, FALSE if it's from URL.
  */
 function plugin_test_context_create_testcontext($empty, $data = NULL, $conf = FALSE) {
-  $context = ctools_context('testcontext');
+  $context = new ctools_context('testcontext');
   $context->plugin = 'testcontext';
 
   if ($empty) {
   	return $context;
   }
 
+  $context->data = new stdClass();
+  // Populate our keyword with data.
+  $context->data->keyword1 = t('Keyword1');
+  $context->data->keyword2 = t('Keyword2');
   
+  if ($conf) {
+  	// Data coming from settings form.
+  	if (!empty($data)) {
+
+  	}
+  }
+  else { 
+  	//Data coming from url argument - it's a string.
+  	$context->argument = $data;
+  	$context->argument_length = strlen($context->argument);
+  }
+  return $context;
 } 
+
+/**
+ * Callback function.
+ * 
+ * Provide a list of keywords for use in a content type, pane etc.
+ */
+function testcontext_convert_list() {
+	return array(
+		'keyword1' => t('Keyword1'),
+		'keyword2' => t('Keyword2'),
+	);
+}
+
+/**
+ * Callback function.
+ *
+ * Convert a keyword into the associated data from the conbtext.
+ */
+function testcontext_convert($context, $type) {
+	switch ($type) {
+		case 'keyword1':
+			return $context->data->keyword1;
+		case 'keyword2':
+			return $context->data->keyword2;
+	}
+}
